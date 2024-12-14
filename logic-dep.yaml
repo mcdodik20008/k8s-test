@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logic
+  labels:
+    app: logic
+spec:
+  selector:
+    matchLabels:
+      app: logic
+  replicas: 3
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: logic
+    spec:
+      containers:
+        - name: logic
+          image: mcdodik2008/k8s-mastery-logic
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+
+

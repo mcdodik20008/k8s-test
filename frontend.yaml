@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+spec:
+  containers:
+    - name: frontend
+      image: mcdodik2008/k8s-mastery-frontend
+      ports:
+        - containerPort: 80

@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    image: mcdodik2008/k8s-mastery-frontend:latex
+    ports:
+      - "80:80"
+    networks:
+      - allnet
+
+  logic:
+    build:
+      context: logic
+      dockerfile: Dockerfile
+    image: mcdodik2008/k8s-mastery-logic
+    ports:
+      - "5000:5000"
+    networks:
+      - allnet
+
+  webapp:
+    build:
+      context: webapp
+      dockerfile: Dockerfile
+    image: mcdodik2008/k8s-mastery-webapp
+    ports:
+      - "8080:8080"
+    networks:
+      - allnet
+
+networks:
+  allnet:
+    driver: bridge

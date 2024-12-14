@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+spec:
+  selector:
+    matchLabels:
+      app: web-app
+  replicas: 3
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - image: mcdodik2008/k8s-mastery-webapp
+          imagePullPolicy: Always
+          name: web-app
+          env:
+            - name: SA_LOGIC_API_URL
+              value: "http://logic:80"
+          ports:
+            - containerPort: 8080

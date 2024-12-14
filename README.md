@@ -73,7 +73,8 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 ```bash
 docker login
 ```
-Создать образы - можно использовать мой компоуз файл [docker-compose.yml](docker-compose.yml), только подмени в images мой ник на свой
+Создать образы - можно использовать мой компоуз файл [docker-compose.yml](docker-compose.yml) 
+`docker-compose build --no-cache`, только подмени в images мой ник на свой
 ```yaml
 image: mcdodik2008/k8s-mastery-frontend
 ```
@@ -111,7 +112,7 @@ kubectl port-forward -n default frontend 88:80
 
 Давайте перед входом во фронтс добавим лоад балансер
 
-#Лоадбалансер
+# Лоадбалансер
 [frontend-lb-service.yaml](frontend-lb-service.yaml)
 ```yaml
 apiVersion: v1
@@ -198,7 +199,7 @@ spec:
   selector:
     app: web-app
 ```
-и для логики
+и роут для обращения к логике
 ```yaml
 apiVersion: v1
 kind: Service
